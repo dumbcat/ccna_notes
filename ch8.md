@@ -1,0 +1,112 @@
+# TCP/IP Transport Layer Functions
+
++ Session 多工 (Multiplexing) 表示在一個線路上可以傳輸多種協定的訊號
+
++ 利用 Port 識別不同的應用程式，使接收端可以正確的接收資料
+
++ 封包分割 (Segmentation)
+
++ 流量控制
+
++ 連接導向 (Connection-oriented) 在開始傳輸資料前，需要先利用交握建立連線
+
++ 因為是連接導向，所以傳輸是可靠的
+
+# TCP vs. UDP
+
++ TCP 是可靠的，UDP 是盡力傳輸的 (Best-effort)
+
++ TCP 是連接導向的 (Connection-oriented)，UDP 是無連接的 (Connectionless)
+
++ TCP 的封包是有排序的，UDP 的封包是沒有排序的
+
++ TCP 特點
+
+    + 連接導向
+
+    + 提供錯誤檢查 (Error checking)
+
+    + 使用虛擬電路 (Virtual circuits) 提供連接導向的資料傳輸在傳輸前，先在兩個端點建立一條連線
+
+    + Segments 會被編號與排序
+
+    + 使用 ACK
+
+    + 提供資料復原服務
+
+    + 提供流量控制
+
++ UDP 特點
+
+    + 無連接的 (Connectionless)
+
+    + 執行有限度的錯誤檢查
+
+    + 提供盡力傳輸的服務
+
+    + 不回復遺失或錯誤的封包
+
+    + 低開銷 (Low overhead)
+
+# DHCP
+
++ 設定介面使用 DHCP 取得 IP
+    
+    ```
+    Router(config-if)# ip address dhcp
+    ```
+
++ 設定介面為 DHCP Relay
+
+    DHCP 是靠廣播 (Broadcast) 傳送的，如果 DHCP Server 與 DHCP Client 在不同一個網段，Client 就無法配發到 IP 了，這時候可以使用 DHCP Relay (或稱為 IP Helper)，傳送 DHCP Client 的廣播到 DHCP Server 以能將 IP 配發到 Client
+
+    ```
+    Router(config-if)# ip helper-address 10.0.0.1
+    ```
+
+    10.0.0.1 是 DHCP Server 的 IP 位址
+
++ 設定 Router 為 DHCP Server
+
+    ```
+    Router(config)# ip dhcp excluded-address 10.1.50.1 10.1.50.50
+    Router(config)# ip dhcp pool Customer
+    Router(dhcp-config)# network 10.1.50.0/24
+    Router(dhcp-config)# default-router 10.1.50.1
+    Router(dhcp-config)# dns-server 10.1.50.1
+    Router(dhcp-config)# domain-name cisco.com
+    Router(dhcp-config)# lease 0 12
+    Router(dhcp-config)# exit
+    ```
+
+    ### Globally configure
+
+    + **ip dhcp excluded-address 10.1.50.1 10.1.50.50**
+        
+        設定 DHCP 不發派的 IP 範圍
+
+    + **ip dhcp pool Customer**
+
+        設定DHCP服務的名稱
+    
+    ### DHCP configure
+
+    + **network 10.1.50.0/24**
+
+        設定 DHCP 派發的 IP 範圍
+
+    + **default-router 10.1.50.1**
+
+        設定 DHCP Client 的 Default Gateway
+
+    + **dns-server 10.1.50.1**
+
+        設定 DHCP Client 的 DNS Server
+
+    + **domain-name cisco.com**
+
+        設定 DHCP Client 的 Domain name
+
+    + **lease 0 12**
+
+        設定租約為 0 天 12 小時，lease 後面的時間為 days hours minutes
