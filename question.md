@@ -1,35 +1,13 @@
-# ch 5.
+# ch 18. 
 
-1. 確認兩端雙工模式不同的結果
+1. P.15 決定 root port 與 designated port 之後應該進入 learning?
 
-# ch 6. 
+# ch 21.
 
-1. 確認interface up, line protocol down的原因
+1. P.26 GRE 與 IPsec 都是一種 Tunnel 技術，為何不直接用 IPsec 就好
 
-# ch 8.
+# ch 22.
 
-1. Router 設定 DHCP Server 時，沒有 `Router(dhcp-config)# lease 0 12` 這個指令
+1. P 15. Filter entire TCP/IP Protocol suite
 
-# ch 10.
-
-1. `show protocols FastEthernet 0/1` 無法指定介面
-
-# ch 11.
-
-1. 只有 Switch 有 MAC 表嗎?
-
-# ch 12.
-
-1. Telnet 到 cisco 的 username?
-
-2. 該使用遠端登入嗎?
-
-# ch 15. 
-
-1. keep management traffic in a separate VLAN 的意思?
-
-# ch 17.
-
-1. Point-to-Point? End-to-End?
-
-2. P.12看不懂
+    prevent traffic from crossing network infrastructure unnecessarily
