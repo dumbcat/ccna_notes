@@ -1,13 +1,5 @@
-# ch 18. 
+ch 24.
 
-1. P.15 決定 root port 與 designated port 之後應該進入 learning?
+2. P.12 Scheduling 與 Shaping 的順序
 
-# ch 21.
-
-1. P.26 GRE 與 IPsec 都是一種 Tunnel 技術，為何不直接用 IPsec 就好
-
-# ch 22.
-
-1. P 15. Filter entire TCP/IP Protocol suite
-
-    prevent traffic from crossing network infrastructure unnecessarily
+3. P.13 without classification, all packets are treated the same 廢話?
